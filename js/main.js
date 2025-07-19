@@ -116,15 +116,6 @@ const modalTitle = document.getElementById('modal-title');
 const modalDescription = document.getElementById('modal-description');
 const modalTech = document.getElementById('modal-tech');
 const modalLink = document.getElementById('modal-link');
-// Открытие ссылки по клику на кнопку "Посмотреть проект" в новой вкладке
-if (modalLink) {
-    modalLink.addEventListener('click', function(e) {
-        if (modalLink.href && modalLink.href !== '#' && !modalLink.classList.contains('hidden')) {
-            e.preventDefault();
-            window.open(modalLink.href, '_blank', 'noopener');
-        }
-    });
-}
 
 document.querySelectorAll('.open-project-modal').forEach(button => {
     button.addEventListener('click', function(e) {
@@ -141,15 +132,15 @@ document.querySelectorAll('.open-project-modal').forEach(button => {
         modalDescription.textContent = description;
         modalTech.textContent = tech;
 
-        // Проверяем наличие ссылки и делаем кнопку видимой/скрытой
-        if (link && link !== '#' && link.trim() !== '') {
+        // Кнопка "Посмотреть проект"
+        if (link && link.trim() !== '') {
             modalLink.href = link;
             modalLink.classList.remove('hidden');
-            modalLink.setAttribute('tabindex', '0');
+            modalLink.setAttribute('target', '_self');
         } else {
             modalLink.href = '#';
             modalLink.classList.add('hidden');
-            modalLink.setAttribute('tabindex', '-1');
+            modalLink.removeAttribute('target');
         }
 
         // Убираем hidden и добавляем классы для анимации появления
