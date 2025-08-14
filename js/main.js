@@ -43,11 +43,21 @@ blobs.forEach(blob => {
     }, 50);
 });
 
-// Анимация для текста
+// Анимация для текста с IntersectionObserver (фикс undefined observer)
 const textElements = document.querySelectorAll('h1, h2, p');
+const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in');
+            entry.target.classList.remove('opacity-0');
+            obs.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+
 textElements.forEach(element => {
     element.classList.add('opacity-0', 'transition-all', 'duration-1000');
-    observer.observe(element);
+    io.observe(element);
 });
 
 // Мобильное меню
@@ -136,7 +146,14 @@ document.querySelectorAll('.open-project-modal').forEach(button => {
         if (link && link.trim() !== '') {
             modalLink.href = link;
             modalLink.classList.remove('hidden');
-            modalLink.setAttribute('target', '_self');
+            // Открывать внешние ссылки в новой вкладке
+            if (/^https?:\/\//i.test(link) || link.startsWith('//')) {
+                modalLink.setAttribute('target', '_blank');
+                modalLink.setAttribute('rel', 'noopener noreferrer');
+            } else {
+                modalLink.setAttribute('target', '_self');
+                modalLink.removeAttribute('rel');
+            }
         } else {
             modalLink.href = '#';
             modalLink.classList.add('hidden');
@@ -173,3 +190,8 @@ projectModal.addEventListener('click', function(e) {
         closeModal();
     }
 }); 
+
+// Lazy-loading для изображений без явного атрибута
+document.querySelectorAll('img:not([loading])').forEach(img => {
+    img.setAttribute('loading', 'lazy');
+});
