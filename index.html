@@ -467,7 +467,7 @@
                            В прошивках отсутствует реклама, добавлены полезные функции, улучшена производительность и стабильность системы"
                            data-image="img\miuipro.jpg"
                            data-tech="ADB/QA/MENEDGER/ANDROID"
-                           data-link="https://your-project4-demo.com">
+                           data-link="https://pikabu.ru/story/pochemu_zhe_zapretili_miuipro_na_4pda_7536069">
                             Подробнее <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     </div>
@@ -1137,6 +1137,23 @@ projectModal.addEventListener('click', function (e) {
                 const updatedModalLink = document.getElementById('modal-link');
                 updatedModalLink.href = 'https://danilmashina.github.io/game-js-snake/';
                 updatedModalLink.target = '_blank';
+            } else if (data && data.title === 'Команда единомышлеников из 5 человек') {
+                modalLink.style.display = 'inline-block';
+                modalLink.href = 'https://pikabu.ru/story/pochemu_zhe_zapretili_miuipro_na_4pda_7536069';
+                modalLink.target = '_blank';
+                modalLink.classList.remove('opacity-50');
+
+                // Удаляем все старые обработчики
+                modalLink.removeAttribute('onclick');
+
+                // Клонируем элемент для удаления всех обработчиков
+                const newModalLink = modalLink.cloneNode(true);
+                modalLink.parentNode.replaceChild(newModalLink, modalLink);
+
+                // Обновляем ссылку на новый элемент
+                const updatedModalLink = document.getElementById('modal-link');
+                updatedModalLink.href = 'https://pikabu.ru/story/pochemu_zhe_zapretili_miuipro_na_4pda_7536069';
+                updatedModalLink.target = '_blank';
             } else if (data && data.title === 'Расширение для Браузера Google chrome') {
                 modalLink.style.display = 'inline-block';
                 modalLink.href = 'https://github.com/danilmashina/extension-Google-chrome';
@@ -1319,6 +1336,23 @@ projectModal.addEventListener('click', function (e) {
                     });
                     linksAreaDiv.appendChild(detailsLink);
 
+                    // Добавляем кнопку/ссылку "посмотреть проект"
+                    const viewProjectLink = document.createElement('a');
+                    viewProjectLink.textContent = 'посмотреть проект';
+                    viewProjectLink.className = 'px-3 py-2 border border-sky-500 text-sky-400 hover:bg-sky-500/10 rounded transition';
+                    if (projectDataFromLink.link && projectDataFromLink.link.trim() !== '') {
+                        viewProjectLink.href = projectDataFromLink.link;
+                        // Внешние ссылки открываем в новой вкладке
+                        if (/^https?:\/\//i.test(projectDataFromLink.link)) {
+                            viewProjectLink.target = '_blank';
+                            viewProjectLink.rel = 'noopener noreferrer';
+                        }
+                    } else {
+                        viewProjectLink.href = '#';
+                        viewProjectLink.classList.add('opacity-50', 'pointer-events-none');
+                    }
+                    linksAreaDiv.appendChild(viewProjectLink);
+
 
                     contentAreaDiv.appendChild(linksAreaDiv);
                     projectItemCard.appendChild(contentAreaDiv);
@@ -1381,6 +1415,22 @@ projectModal.addEventListener('click', function (e) {
                         });
                     });
                     linksAreaDiv.appendChild(detailsLink);
+
+                    // Кнопка/ссылка "посмотреть проект" для extra карточки
+                    const viewProjectLinkExtra = document.createElement('a');
+                    viewProjectLinkExtra.textContent = 'посмотреть проект';
+                    viewProjectLinkExtra.className = 'px-3 py-2 border border-sky-500 text-sky-400 hover:bg-sky-500/10 rounded transition';
+                    if (extraData.link && extraData.link.trim() !== '') {
+                        viewProjectLinkExtra.href = extraData.link;
+                        if (/^https?:\/\//i.test(extraData.link)) {
+                            viewProjectLinkExtra.target = '_blank';
+                            viewProjectLinkExtra.rel = 'noopener noreferrer';
+                        }
+                    } else {
+                        viewProjectLinkExtra.href = '#';
+                        viewProjectLinkExtra.classList.add('opacity-50', 'pointer-events-none');
+                    }
+                    linksAreaDiv.appendChild(viewProjectLinkExtra);
 
                     content.appendChild(linksAreaDiv);
                     extraCard.appendChild(content);
