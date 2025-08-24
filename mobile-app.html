@@ -40,7 +40,7 @@
         </div>
 
         <div class="app-actions">
-          <button class="btn-install" id="install-btn">Скачать</button>
+          <button class="btn-install" id="install-btn">Скачать Rustore</button>
           <button class="btn-share">↗</button>
           <button class="btn-wishlist">♡</button>
         </div>
@@ -162,8 +162,7 @@
           <div class="data-banner-title">Данное приложение может обрабатывать следующие категории данных:</div>
           <span class="data-banner-accent">Учетные данные:</span> логин и пароль, предоставляемые пользователем при регистрации (используются исключительно для аутентификации);<br>
           <span class="data-banner-accent">Общедоступный контент:</span> доступ к публичным миксам, опубликованным пользователями (для отображения и взаимодействия);<br>
-<!--           <span class="data-banner-accent">Медиафайлы:</span> загруженные пользователями аватарки (используются для персонализации профиля). -->
-          </div>
+          <span class="data-banner-accent">Медиафайлы:</span> загруженные пользователями аватарки (используются для персонализации профиля).</div>
 
         </div>
       
@@ -266,21 +265,16 @@
 
   <script>
     document.getElementById('install-btn').addEventListener('click', function() {
-      // Создаем временную ссылку для скачивания
-      const link = document.createElement('a');
-      link.href = 'img/tastesmoke.png';
-      link.download = 'tastesmoke.png';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      // Открываем ссылку на RuStore
+      window.open('https://www.rustore.ru/catalog/app/com.example.tastesmoketest', '_blank');
       
       // Меняем текст кнопки
-      this.textContent = 'Установлено';
+      this.textContent = 'Открыто в RuStore';
       this.style.background = '#34c759';
       setTimeout(() => {
-        this.textContent = 'Установить';
-        this.style.background = '#007aff';
-      }, 2000);
+        this.textContent = 'Скачать';
+        this.style.background = 'linear-gradient(90deg, #38bdf8 0%, #0ea5e9 100%)';
+      }, 3000);
     });
 
     // Добавляем обработчики для кнопок поделиться и в избранное
