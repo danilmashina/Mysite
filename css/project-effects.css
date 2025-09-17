@@ -76,3 +76,66 @@
 .project-card:hover .fa-pencil-alt {
   animation: iconSpin 0.8s linear infinite;
 }
+
+/* Стиль и анимация для карточки мобильного приложения */
+@keyframes glow-pulse {
+  0% { box-shadow: 0 0 10px 2px rgba(56, 189, 248, 0.3), 0 0 20px 6px rgba(14, 165, 233, 0.1); }
+  50% { box-shadow: 0 0 15px 5px rgba(56, 189, 248, 0.6), 0 0 30px 10px rgba(14, 165, 233, 0.3); }
+  100% { box-shadow: 0 0 10px 2px rgba(56, 189, 248, 0.3), 0 0 20px 6px rgba(14, 165, 233, 0.1); }
+}
+
+@keyframes border-glow {
+  0% { border-color: rgba(56, 189, 248, 0.5); }
+  50% { border-color: rgba(16, 185, 129, 0.8); }
+  100% { border-color: rgba(56, 189, 248, 0.5); }
+}
+
+.mobile-app-card {
+  position: relative;
+  border: 2px solid rgba(56, 189, 248, 0.5);
+  animation: glow-pulse 3s infinite ease-in-out, border-glow 4s infinite alternate;
+  z-index: 1;
+}
+
+.mobile-app-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: 0.75rem;
+  background: linear-gradient(45deg, rgba(16, 185, 129, 0.1), rgba(56, 189, 248, 0.1));
+  animation: border-glow 4s infinite alternate;
+}
+
+/* Добавляем эффект 'основной проект' в углу карточки */
+.mobile-app-card::after {
+  content: 'Основной проект';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(90deg, #10b981, #0ea5e9);
+  color: white;
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border-bottom-right-radius: 10px;
+  transform-origin: left;
+  animation: shimmer 2s infinite;
+}
+
+/* Дополнительный эффект свечения при прокрутке */
+.mobile-app-card.extra-glow {
+  animation: glow-pulse-strong 2s infinite ease-in-out, border-glow 3s infinite alternate;
+  transform: translateZ(0); /* Для ускорения GPU */
+}
+
+@keyframes glow-pulse-strong {
+  0% { box-shadow: 0 0 15px 5px rgba(56, 189, 248, 0.4), 0 0 30px 10px rgba(14, 165, 233, 0.2); }
+  50% { box-shadow: 0 0 20px 8px rgba(56, 189, 248, 0.7), 0 0 40px 15px rgba(14, 165, 233, 0.4); }
+  100% { box-shadow: 0 0 15px 5px rgba(56, 189, 248, 0.4), 0 0 30px 10px rgba(14, 165, 233, 0.2); }
+}
+
+@keyframes shimmer {
+  0% { background: linear-gradient(90deg, #10b981, #0ea5e9, #10b981); background-size: 200% 100%; background-position: -100% 0; }
+  100% { background: linear-gradient(90deg, #10b981, #0ea5e9, #10b981); background-size: 200% 100%; background-position: 200% 0; }
+}

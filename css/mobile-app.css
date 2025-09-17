@@ -9,6 +9,29 @@ body {
   background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
   color: #f8fafc;
   line-height: 1.4;
+  padding-top: 10px;
+}
+
+.back-to-home {
+  padding: 10px 24px 0;
+  margin-bottom: 10px;
+}
+
+.home-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #334155;
+  color: #f8fafc;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.home-button:hover {
+  background-color: #475569;
+  text-decoration: none;
 }
 
 .container {
