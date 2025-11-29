@@ -42,17 +42,12 @@
         </div>
 
         <div class="app-actions">
-          <button class="btn-install active" id="install-btn" data-store="rustore">
+          <a class="btn-install" data-store="rustore" href="https://www.rustore.ru/catalog/app/com.example.tastesmoketest" target="_blank" rel="noopener noreferrer">
             Скачать RuStore
-          </button>
-          <button class="btn-install coming-soon" data-store="playmarket">
-            Play Market
-            <span class="coming-soon-badge">Скоро</span>
-          </button>
-          <button class="btn-install coming-soon" data-store="appstore">
-            App Store
-            <span class="coming-soon-badge">Скоро</span>
-          </button>
+          </a>
+          <a class="btn-install" data-store="appstore" href="https://apps.apple.com/ru/app/taste/id6753088616" target="_blank" rel="noopener noreferrer">
+            Скачать Apple Store
+          </a>
           <div class="app-actions-secondary">
             <button class="btn-share">↗</button>
             <button class="btn-wishlist">♡</button>
@@ -313,19 +308,6 @@
   </style>
 
   <script>
-    document.getElementById('install-btn').addEventListener('click', function () {
-      // Открываем ссылку на RuStore
-      window.open('https://www.rustore.ru/catalog/app/com.example.tastesmoketest', '_blank');
-
-      // Меняем текст кнопки
-      this.textContent = 'Открыто в RuStore';
-      this.style.background = '#34c759';
-      setTimeout(() => {
-        this.textContent = 'Скачать';
-        this.style.background = 'linear-gradient(90deg, #38bdf8 0%, #0ea5e9 100%)';
-      }, 3000);
-    });
-
     // Добавляем обработчики для кнопок поделиться и в избранное
     document.querySelector('.btn-share').addEventListener('click', function () {
       if (navigator.share) {
