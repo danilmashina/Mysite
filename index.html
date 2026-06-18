@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else {
+                const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+                document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+            }
+        })();
+    </script>
+    
+    <!-- Primary Meta Tags -->
+    <title>Данил Иванов | Портфолио - QA Engineer & Веб-разработчик</title>
+    <meta name="title" content="Данил Иванов | Портфолио - QA Engineer & Веб-разработчик">
+    <meta name="description" content="Профессиональный QA Engineer с 5+ годами опыта тестирования Web и Mobile. Веб-разработчик с фокусом на современные интерактивные приложения. React Native, TypeScript, Python, JavaScript.">
+    <meta name="keywords" content="QA Engineer, Тестировщик, Веб-разработчик, React Native, TypeScript, JavaScript, Python, Mobile Testing, Web Testing, Данил Иванов, Portfolio">
+    <meta name="author" content="Данил Иванов">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Russian">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://danilmashina.github.io/Mysite/">
+    <meta property="og:title" content="Данил Иванов | Портфолио - QA Engineer & Веб-разработчик">
+    <meta property="og:description" content="Профессиональный QA Engineer с 5+ годами опыта тестирования Web и Mobile. Веб-разработчик с фокусом на современные интерактивные приложения.">
+    <meta property="og:image" content="https://danilmashina.github.io/Mysite/assets/my-avatar.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="Портфолио Данила Иванова">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://danilmashina.github.io/Mysite/">
+    <meta name="twitter:title" content="Данил Иванов | Портфолио - QA Engineer & Веб-разработчик">
+    <meta name="twitter:description" content="Профессиональный QA Engineer с 5+ годами опыта тестирования Web и Mobile. Веб-разработчик с фокусом на современные интерактивные приложения.">
+    <meta name="twitter:image" content="https://danilmashina.github.io/Mysite/assets/my-avatar.jpg">
+    
+    <!-- Additional SEO -->
+    <link rel="canonical" href="https://danilmashina.github.io/Mysite/">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Данил | Portfolio">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/log.png">
+    <link rel="apple-touch-icon" href="assets/log.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <span class="logo-dot-loader"></span>
+                <span class="loader-text">Portfolio</span>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress" id="loader-progress"></div>
+            </div>
+            <p class="loader-status" id="loader-status">Загрузка...</p>
+        </div>
+    </div>
+
+    <!-- Ambient Background Elements -->
+    <div class="ambient-bg">
+        <div class="blob blob-1" id="blob-1"></div>
+        <div class="blob blob-2" id="blob-2"></div>
+        <div class="blob blob-3" id="blob-3"></div>
+        <div class="cursor-glow" id="cursor-glow"></div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Вернуться наверх">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <!-- Header Navigation -->
+    <header class="main-header" id="main-header">
+        <div class="header-container">
+            <a href="#" class="logo" id="header-logo">
+                <span class="logo-dot"></span> Portfolio
+            </a>
+            <nav class="nav-links" id="nav-links">
+                <a href="#about" class="nav-link">Обо мне</a>
+                <a href="#projects-section" class="nav-link">Проекты</a>
+                <a href="#experience-section" class="nav-link">Опыт</a>
+                <a href="#skills" class="nav-link">Стек</a>
+                <a href="#contact" class="nav-link nav-btn">Связаться</a>
+            </nav>
+            <div class="header-controls">
+                <button class="share-toggle" id="share-toggle" aria-label="Поделиться портфолио" title="Поделиться портфолио">
+                    <i data-lucide="share-2" class="share-icon"></i>
+                </button>
+                <button class="terminal-toggle" id="terminal-toggle" aria-label="Открыть консоль QA" title="Открыть консоль QA">
+                    <i data-lucide="terminal" class="terminal-icon"></i>
+                </button>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Переключить тему" title="Переключить тему">
+                    <i data-lucide="sun" class="theme-icon"></i>
+                </button>
+                <button class="music-toggle" id="music-toggle" aria-label="Включить эмбиент"
+                    title="Включить фоновый звук">
+                    <i data-lucide="volume-x" class="volume-icon"></i>
+                </button>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Меню" title="Открыть меню">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-content" id="main-content">
+        <div class="bento-grid">
+
+            <!-- 1. HERO CARD (spans 2x2) -->
+            <section class="bento-card hero-card col-span-2 row-span-2" id="hero-card">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content">
+                    <div class="hero-layout">
+                        <div class="hero-text-col">
+
+                            <h1 class="hero-title">
+                                Привет, я <span class="gradient-text">Данил</span>
+                            </h1>
+                            <h2 class="hero-subtitle">Веб-разработчик / Тестировщик</h2>
+                            <p class="hero-desc">
+                                Создаю современные и интерактивные веб-приложения с упором на пользовательский опыт и
+                                производительность. Профессионально тестирую мобильные и веб-приложения.
+                            </p>
+                            <div class="hero-actions">
+                                <a href="#projects-section" class="btn btn-primary" id="cta-projects">
+                                    Мои работы <i data-lucide="arrow-up-right"></i>
+                                </a>
+                                <a href="resume/Иванов Данил (1).pdf" download class="btn btn-secondary btn-resume" id="cta-resume">
+                                    <i data-lucide="download"></i> Скачать резюме
+                                </a>
+                                <a href="#contact" class="btn btn-secondary" id="cta-contact">Связаться</a>
+                            </div>
+                        </div>
+                        <div class="hero-avatar-col">
+                            <div class="hero-avatar-wrapper">
+                                <img src="assets/my-avatar.jpg" alt="Данил" class="hero-avatar">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. ABOUT CARD (spans 1x1) -->
+            <section class="bento-card about-card" id="about">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content">
+                    <div class="card-header-row-about">
+                        <div class="card-header" style="margin-bottom: 0;">
+                            <i data-lucide="user" class="card-icon accent-blue"></i>
+                            <h2>Кто я?</h2>
+                        </div>
+                        <img src="assets/obomne.jpg" alt="Обо мне" class="about-thumb">
+                    </div>
+                    <p class="about-text" style="margin-top: 16px;">
+                        Моя страсть к IT началась в университете. Я профессиональный тестировщик ПО с 5+ годами опыта
+                        тестирования Web и Mobile. Также активно разрабатываю веб-сайты, приложения и Telegram-ботов.
+                    </p>
+                    <div class="interactive-canvas-container">
+                        <div class="line-canvas" id="interactive-lines">
+                            <svg width="100%" height="80" viewBox="0 0 200 80" preserveAspectRatio="none">
+                                <path d="M 0 40 Q 50 20 100 40 T 200 40" fill="none" stroke="rgba(99, 102, 241, 0.4)"
+                                    stroke-width="2" id="wave-path-1"></path>
+                                <path d="M 0 40 Q 50 60 100 40 T 200 40" fill="none" stroke="rgba(168, 85, 247, 0.3)"
+                                    stroke-width="1.5" id="wave-path-2"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. STATS CARD (spans 1x1) -->
+            <section class="bento-card stats-card" id="stats">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content flex-center">
+                    <div class="stats-grid">
+                        <div class="stat-item" id="stat-projects">
+                            <span class="stat-number" data-target="7">0</span>
+                            <span class="stat-label">Проектов</span>
+                        </div>
+                        <div class="stat-item" id="stat-experience">
+                            <span class="stat-number" data-target="5">0</span>
+                            <span class="stat-label">Лет опыта</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. PROJECTS FILTER & GRID (spans 2x2) -->
+            <section class="bento-card projects-card col-span-2 row-span-2" id="projects-section">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content">
+                    <div class="card-header-row">
+                        <div class="card-header">
+                            <i data-lucide="folder-git-2" class="card-icon accent-indigo"></i>
+                            <h2>Мои проекты</h2>
+                        </div>
+                        <div class="project-filters" id="project-filters">
+                            <button class="filter-btn active" data-filter="all">Все</button>
+                            <button class="filter-btn" data-filter="web">Web-сайты</button>
+                            <button class="filter-btn" data-filter="mobile">Приложения</button>
+                            <button class="filter-btn" data-filter="motion">Креатив</button>
+                        </div>
+                    </div>
+
+                    <div class="projects-grid" id="projects-grid">
+                        <!-- Project 1: Сайт подолога -->
+                        <div class="project-item active" data-category="web" data-id="1">
+                            <div class="project-img-wrapper">
+                                <img src="assets/podologsite.jpg" alt="Сайт подолога" class="project-img"
+                                    loading="lazy">
+                                <div class="project-tags">
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>JS</span>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Сайт подолога</h3>
+                                <p>Современный адаптивный веб-сайт с анимациями для демонстрации услуг подолога и
+                                    маникюра.</p>
+                                <span class="project-link">Посмотреть <i data-lucide="arrow-up-right"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Project 2: Tastesmoke -->
+                        <div class="project-item active" data-category="mobile" data-id="2">
+                            <div class="project-img-wrapper">
+                                <img src="assets/tastesmoke.png" alt="Tastesmoke" class="project-img" loading="lazy">
+                                <div class="project-tags">
+                                    <span>Kotlin</span>
+                                    <span>App Store</span>
+                                    <span>Rustore</span>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Мобильное приложение</h3>
+                                <p>Tastesmoke — полностью готовое приложение, опубликованное в Apple App Store и
+                                    RuStore.</p>
+                                <span class="project-link">Посмотреть <i data-lucide="arrow-up-right"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Project 3: Телеграм Бот -->
+                        <div class="project-item active" data-category="motion" data-id="3">
+                            <div class="project-img-wrapper">
+                                <img src="assets/amigurumi.png" alt="Amigurumi Bot" class="project-img" loading="lazy">
+                                <div class="project-tags">
+                                    <span>Python</span>
+                                    <span>Telegram API</span>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Телеграм-бот</h3>
+                                <p>Amigurumi — удобный чат-бот в Telegram для любителей и мастериц вязания игрушек.</p>
+                                <span class="project-link">Посмотреть <i data-lucide="arrow-up-right"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Project 4: MiuiPro -->
+                        <div class="project-item active" data-category="mobile" data-id="4">
+                            <div class="project-img-wrapper">
+                                <img src="assets/miuipro.jpg" alt="MiuiPro" class="project-img" loading="lazy">
+                                <div class="project-tags">
+                                    <span>ADB</span>
+                                    <span>Android</span>
+                                    <span>QA</span>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Проект MiuiPro</h3>
+                                <p>Локализация, оптимизация и тестирование кастомных мобильных прошивок для Xiaomi.</p>
+                                <span class="project-link">Посмотреть <i data-lucide="arrow-up-right"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Project 5: Игра Змейка -->
+                        <div class="project-item active" data-category="web" data-id="5">
+                            <div class="project-img-wrapper">
+                                <img src="assets/game-js-snake.jpg" alt="JS Snake Game" class="project-img"
+                                    loading="lazy">
+                                <div class="project-tags">
+                                    <span>JS</span>
+                                    <span>HTML5</span>
+                                    <span>CSS</span>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Игра «Змейка»</h3>
+                                <p>Классическая аркада на чистом JavaScript с плавной анимацией и таблицей рекордов.</p>
+                                <span class="project-link">Посмотреть <i data-lucide="arrow-up-right"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Project 6: Chrome extension -->
+                        <div class="project-item active" data-category="motion" data-id="6">
+                            <div class="project-img-wrapper">
+                                <img src="assets/chrome.jpg" alt="Chrome Extension" class="project-img" loading="lazy">
+                                <div class="project-tags">
+                                    <span>JS</span>
+                                    <span>Chrome API</span>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Расширение Chrome</h3>
+                                <p>Расширение Snowfall, которое запускает красивый снегопад на любой веб-странице.</p>
+                                <span class="project-link">Посмотреть <i data-lucide="arrow-up-right"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Project 7: Blat App -->
+                        <div class="project-item active" data-category="mobile" data-id="7">
+                            <div class="project-img-wrapper">
+                                <img src="assets/log.png" alt="Blat App" class="project-img" loading="lazy">
+                                <div class="project-tags">
+                                    <span>React Native</span>
+                                    <span>TypeScript</span>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Blat — Платформа обмена</h3>
+                                <p>Платформа взаимного обмена благами с защитой сделок и внутренней валютой БК.</p>
+                                <span class="project-link">Посмотреть <i data-lucide="arrow-up-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. SKILLS CARD (spans 1x2) -->
+            <section class="bento-card skills-card row-span-2" id="skills">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <i data-lucide="cpu" class="card-icon accent-purple"></i>
+                        <h2>Мой Стек</h2>
+                    </div>
+                    <p class="skills-desc">
+                        Наведите на технологию, чтобы подсветить связанные проекты.
+                    </p>
+                    <div class="skills-wrapper" id="skills-wrapper">
+                        <div class="skill-tag" data-skill="HTML5" data-color="#e34f26">HTML5</div>
+                        <div class="skill-tag" data-skill="CSS3" data-color="#1572b6">CSS3</div>
+                        <div class="skill-tag" data-skill="JavaScript" data-color="#f7df1e">JavaScript</div>
+                        <div class="skill-tag" data-skill="Canvas" data-color="#e34f26">Canvas API</div>
+                        <div class="skill-tag" data-skill="Chrome" data-color="#4285f4">Chrome Extensions</div>
+                        <div class="skill-tag" data-skill="GSAP" data-color="#88ce02">GSAP</div>
+                        <div class="skill-tag" data-skill="TypeScript" data-color="#3178c6">TypeScript</div>
+                        <div class="skill-tag" data-skill="React Native" data-color="#61dafb">React Native</div>
+                        <div class="skill-tag" data-skill="Expo" data-color="#000020">Expo</div>
+                        <div class="skill-tag" data-skill="Python" data-color="#3776ab">Python (Bots)</div>
+                        <div class="skill-tag" data-skill="Telegram" data-color="#229ed9">Telegram Bot</div>
+                        <div class="skill-tag" data-skill="SQLite" data-color="#003b57">SQLite</div>
+                        <div class="skill-tag" data-skill="FastAPI" data-color="#009688">FastAPI</div>
+                        <div class="skill-tag" data-skill="PostgreSQL" data-color="#336791">PostgreSQL</div>
+                        <div class="skill-tag" data-skill="Supabase" data-color="#3ecf8e">Supabase</div>
+                        <div class="skill-tag" data-skill="VS Code" data-color="#007acc">VS Code</div>
+                        <div class="skill-tag" data-skill="QA" data-color="#10b981">QA Testing</div>
+                        <div class="skill-tag" data-skill="Android" data-color="#3ddc84">Android OS</div>
+                        <div class="skill-tag" data-skill="ADB" data-color="#3ddc84">ADB & Fastboot</div>
+                        <div class="skill-tag" data-skill="Fastboot" data-color="#ff6600">Fastboot</div>
+                        <div class="skill-tag" data-skill="MIUI" data-color="#ff6900">MIUI</div>
+                        <div class="skill-tag" data-skill="Excel" data-color="#217346">Excel</div>
+                        <div class="skill-tag" data-skill="API" data-color="#ff6c37">REST API (Postman)</div>
+                        <div class="skill-tag" data-skill="Charles" data-color="#0ea5e9">Charles Proxy</div>
+                        <div class="skill-tag" data-skill="Java" data-color="#f89820">Java / Selenium</div>
+                        <div class="skill-tag" data-skill="Kotlin" data-color="#7f52ff">Kotlin (Android)</div>
+                        <div class="skill-tag" data-skill="Swift" data-color="#fa7343">Swift</div>
+                        <div class="skill-tag" data-skill="Firebase" data-color="#ffca28">Firebase</div>
+                        <div class="skill-tag" data-skill="Android Studio" data-color="#3ddc84">Android Studio</div>
+                        <div class="skill-tag" data-skill="Xcode" data-color="#147efb">Xcode</div>
+                        <div class="skill-tag" data-skill="RuStore" data-color="#ff3e30">RuStore</div>
+                        <div class="skill-tag" data-skill="App Store" data-color="#0071e3">App Store</div>
+                    </div>
+                    <div class="skill-relation-preview" id="skill-relation-preview"></div>
+                </div>
+            </section>
+
+            <!-- 6. SOUND BOARD CARD (spans 1x1) -->
+            <section class="bento-card music-card" id="music-widget">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content flex-column-between">
+                    <div class="widget-header">
+                        <div class="sound-wave" id="sound-wave">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span class="music-label">Интерактивная музыка</span>
+                    </div>
+
+                    <div class="ambient-controls">
+                        <button class="sound-btn" data-sound="xxx" id="xxx-sound-btn">
+                            <i data-lucide="headphones"></i> 
+                            <span class="track-info">
+                                <span class="track-name">XXX Intro</span>
+                                <span class="track-artist">XXXTentacion</span>
+                            </span>
+                        </button>
+                        <button class="sound-btn" data-sound="fly" id="fly-sound-btn">
+                            <i data-lucide="plane"></i>
+                            <span class="track-info">
+                                <span class="track-name">Fly</span>
+                                <span class="track-artist">Ludovico Einaudi</span>
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="now-playing-status">
+                        <p id="music-status-text">Музыка выключена. Выберите трек</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. CONTACT CARD (spans 2x1) -->
+            <section class="bento-card contact-card col-span-2" id="contact">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content">
+                    <div class="contact-layout">
+                        <div class="contact-info-col">
+                            <div class="card-header">
+                                <i data-lucide="mail" class="card-icon accent-emerald"></i>
+                                <h2>Связаться</h2>
+                            </div>
+                            <p class="contact-text">
+                                Есть интересная идея или проект? Напишите мне. Открыт к сотрудничеству, тестированию
+                                приложений и разработке.
+                            </p>
+                            <div class="contact-methods">
+                                <a href="mailto:goblen16@mail.ru" class="contact-item-link">
+                                    <i data-lucide="mail"></i> goblen16@mail.ru
+                                </a>
+                                <a href="https://t.me/Danilmashina" target="_blank" class="contact-item-link">
+                                    <i data-lucide="send"></i> @Danilmashina
+                                </a>
+                                <a href="https://github.com/danilmashina" target="_blank" class="contact-item-link">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; min-width: 16px;"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg> GitHub
+                                </a>
+                                <a href="https://www.linkedin.com/in/danil-ivanov-022085241/"
+                                    target="_blank" class="contact-item-link">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; min-width: 16px;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg> LinkedIn
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact-form-col">
+                            <form id="contact-form" novalidate>
+                                <div class="form-row">
+                                    <div class="input-group">
+                                        <input type="text" id="contact-name" name="name" required placeholder=" ">
+                                        <label for="contact-name">Ваше имя</label>
+                                        <span class="error-msg" id="name-error">Пожалуйста, введите имя</span>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="email" id="contact-email" name="email" required placeholder=" ">
+                                        <label for="contact-email">Ваш Email</label>
+                                        <span class="error-msg" id="email-error">Введите корректный email</span>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <textarea id="contact-message" name="message" required placeholder=" "
+                                        rows="3"></textarea>
+                                    <label for="contact-message">Расскажите о проекте</label>
+                                    <span class="error-msg" id="message-error">Пожалуйста, напишите сообщение</span>
+                                </div>
+                                <button type="submit" class="btn btn-primary submit-btn" id="submit-btn">
+                                    <span class="btn-text">Отправить сообщение</span>
+                                    <i data-lucide="send" class="btn-icon"></i>
+                                </button>
+                            </form>
+                            <div class="form-success-message" id="form-success">
+                                <i data-lucide="check-circle" class="success-icon"></i>
+                                <h3>Сообщение отправлено!</h3>
+                                <p>Спасибо. Я отвечу вам в ближайшее время.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- 8. EXPERIENCE SECTION (Timeline / Glass Cards) -->
+        <section class="experience-section" id="experience-section">
+            <div class="section-header">
+                <i data-lucide="briefcase" class="card-icon accent-blue"></i>
+                <h2>Опыт работы</h2>
+            </div>
+            <p class="section-desc">Мой профессиональный путь и ключевые места работы.</p>
+
+            <div class="experience-timeline">
+                <!-- Job 1: Aeroflot -->
+                <div class="exp-card border-glow-blue" data-exp-id="1">
+                    <div class="exp-badge">с 2023</div>
+                    <div class="exp-icon-box bg-blue-glow">
+                        <i data-lucide="plane"></i>
+                    </div>
+                    <div class="exp-main">
+                        <h3>QA Engineer</h3>
+                        <span class="exp-company text-blue">Аэрофлот</span>
+                        <p class="exp-short">Тестирование мобильного приложения CrewTab и веб-сервисов для
+                            бортпроводников.</p>
+                        <button class="btn-text-link">Подробнее <i data-lucide="arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Job 2: RS -->
+                <div class="exp-card border-glow-emerald" data-exp-id="2">
+                    <div class="exp-badge">2023</div>
+                    <div class="exp-icon-box bg-emerald-glow">
+                        <i data-lucide="shopping-bag"></i>
+                    </div>
+                    <div class="exp-main">
+                        <h3>Тестировщик ПО</h3>
+                        <span class="exp-company text-emerald">RS</span>
+                        <p class="exp-short">Тестирование сервисов доставки еды для мобильных приложений и веб.</p>
+                        <button class="btn-text-link">Подробнее <i data-lucide="arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Job 3: iVi -->
+                <div class="exp-card border-glow-rose" data-exp-id="3">
+                    <div class="exp-badge">2019 - 2020</div>
+                    <div class="exp-icon-box bg-rose-glow">
+                        <i data-lucide="play"></i>
+                    </div>
+                    <div class="exp-main">
+                        <h3>Beta-engineer</h3>
+                        <span class="exp-company text-rose">iVi</span>
+                        <p class="exp-short">Ручное тестирование и отладка онлайн-кинотеатра для iOS и Web.</p>
+                        <button class="btn-text-link">Подробнее <i data-lucide="arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Job 4: MiuiPro -->
+                <div class="exp-card border-glow-amber" data-exp-id="4">
+                    <div class="exp-badge">2017 - 2018</div>
+                    <div class="exp-icon-box bg-amber-glow">
+                        <i data-lucide="smartphone"></i>
+                    </div>
+                    <div class="exp-main">
+                        <h3>Тестировщик ПО</h3>
+                        <span class="exp-company text-amber">MiuiPro</span>
+                        <p class="exp-short">Тестирование и локализация кастомных прошивок Android, отладка через ADB.
+                        </p>
+                        <button class="btn-text-link">Подробнее <i data-lucide="arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 9. EDUCATION SECTION -->
+    <section class="education-section" id="education-section">
+        <div class="section-header">
+            <i data-lucide="graduation-cap" class="card-icon accent-purple"></i>
+            <h2>Образование</h2>
+        </div>
+        <p class="section-desc">Моё академическое образование и курсы повышения квалификации.</p>
+
+        <div class="education-grid">
+            <!-- Education 1 -->
+            <div class="edu-card">
+                <div class="edu-icon-box">
+                    <i data-lucide="book-open"></i>
+                </div>
+                <div class="edu-content">
+                    <h3>Высшее образование</h3>
+                    <span class="edu-institution">Название университета</span>
+                    <span class="edu-period">2015 - 2019</span>
+                    <p class="edu-desc">Специальность: Информационные технологии</p>
+                </div>
+            </div>
+
+            <!-- Education 2 -->
+            <div class="edu-card">
+                <div class="edu-icon-box">
+                    <i data-lucide="award"></i>
+                </div>
+                <div class="edu-content">
+                    <h3>QA / Тестирование ПО</h3>
+                    <span class="edu-institution">Онлайн-курсы</span>
+                    <span class="edu-period">2020</span>
+                    <p class="edu-desc">Углубленное изучение методологий тестирования</p>
+                </div>
+            </div>
+
+            <!-- Education 3 -->
+            <div class="edu-card">
+                <div class="edu-icon-box">
+                    <i data-lucide="code-2"></i>
+                </div>
+                <div class="edu-content">
+                    <h3>Web-разработка</h3>
+                    <span class="edu-institution">Самообразование</span>
+                    <span class="edu-period">2018 - настоящее время</span>
+                    <p class="edu-desc">JavaScript, React, TypeScript, Node.js</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2023 Portfolio. Все права защищены.</p>
+    </footer>
+
+    <!-- Project Modal Detail -->
+    <div class="modal" id="project-modal" aria-hidden="true" role="dialog">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-wrapper">
+            <button class="modal-close" id="modal-close" aria-label="Закрыть модальное окно">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modal-img" src="" alt="Project mockup">
+                </div>
+                <div class="modal-info">
+                    <div class="modal-top-row">
+                        <div class="modal-project-icon-wrapper" id="modal-proj-icon-wrapper">
+                            <i id="modal-proj-icon" data-lucide="send"></i>
+                        </div>
+                        <span class="modal-project-badge" id="modal-proj-badge">Bot</span>
+                    </div>
+                    
+                    <h2 id="modal-title">Project Title</h2>
+                    <div class="modal-subtitle" id="modal-subtitle">Project Subtitle</div>
+                    
+                    <p id="modal-description">Detailed description of the project.</p>
+                    
+                    <div class="modal-tech-row" id="modal-tech-row">
+                        <!-- Injected by JS -->
+                    </div>
+                    
+                    <ul class="modal-features-list" id="modal-features-list">
+                        <!-- Injected by JS -->
+                    </ul>
+                    
+                    <div class="modal-actions">
+                        <a href="#" class="btn btn-primary btn-full-width" target="_blank" id="modal-demo-link">
+                            <span id="modal-btn-text">Открыть</span> <i data-lucide="arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Experience Modal Detail -->
+    <div class="modal" id="exp-modal" aria-hidden="true" role="dialog">
+        <div class="modal-overlay" id="exp-modal-overlay"></div>
+        <div class="modal-wrapper max-w-lg-modal">
+            <button class="modal-close" id="exp-modal-close" aria-label="Закрыть модальное окно">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="modal-body exp-modal-body">
+                <div class="exp-modal-header">
+                    <h2 id="exp-modal-title">QA Engineer</h2>
+                    <div class="exp-modal-meta">
+                        <span id="exp-modal-company" class="exp-modal-company">Аэрофлот</span>
+                        <span class="meta-dot">•</span>
+                        <span id="exp-modal-date" class="exp-modal-date">с 2023</span>
+                    </div>
+                </div>
+                
+                <div class="exp-modal-grid">
+                    <div class="exp-modal-col">
+                        <h3><i data-lucide="cpu"></i> Tech Stack</h3>
+                        <ul class="exp-modal-list list-unstyled" id="exp-modal-tech-list">
+                            <!-- Tech tags injected by JS -->
+                        </ul>
+                    </div>
+                    
+                    <div class="exp-modal-col">
+                        <h3><i data-lucide="check-square"></i> Основные задачи</h3>
+                        <ul class="exp-modal-list" id="exp-modal-tasks">
+                            <!-- Tasks injected by JS -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terminal Modal Detail -->
+    <div class="modal" id="terminal-modal" aria-hidden="true" role="dialog">
+        <div class="modal-overlay" id="terminal-modal-overlay"></div>
+        <div class="modal-wrapper max-w-lg-modal terminal-wrapper-theme">
+            <button class="modal-close" id="terminal-modal-close" aria-label="Закрыть терминал">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="dot-red"></span>
+                        <span class="dot-yellow"></span>
+                        <span class="dot-green"></span>
+                    </div>
+                    <span class="terminal-title">danil@qa-test-env:~$</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-output" id="terminal-output">
+                        <div class="terminal-line system-msg">Добро пожаловать в интерактивный QA-терминал Данила!</div>
+                        <div class="terminal-line system-msg">Введите <span class="highlight-cmd">help</span> для списка доступных команд или <span class="highlight-cmd">test</span> для запуска автотестов портфолио.</div>
+                        <div class="terminal-line">&nbsp;</div>
+                    </div>
+                    <div class="terminal-input-row">
+                        <span class="terminal-prompt">danil-qa-test:~$</span>
+                        <input type="text" id="terminal-input" placeholder="Введите команду..." autocomplete="off" spellcheck="false">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Share Modal -->
+    <div class="share-modal" id="share-modal" role="dialog" aria-hidden="true" aria-labelledby="share-modal-title">
+        <div class="share-modal-overlay" id="share-modal-overlay"></div>
+        <div class="share-modal-content">
+            <button class="share-modal-close" id="share-modal-close" aria-label="Закрыть">
+                <i data-lucide="x"></i>
+            </button>
+            <h3 id="share-modal-title">Поделиться портфолио</h3>
+            <p class="share-modal-desc">Поделитесь ссылкой на портфолио с друзьями и коллегами</p>
+            
+            <div class="share-options">
+                <button class="share-btn" id="share-copy-btn">
+                    <i data-lucide="copy"></i>
+                    <span>Копировать ссылку</span>
+                </button>
+                
+                <button class="share-btn" id="share-native-btn" style="display: none;">
+                    <i data-lucide="share-2"></i>
+                    <span>Поделиться</span>
+                </button>
+            </div>
+            
+            <div class="share-link-preview">
+                <input type="text" readonly value="https://danilmashina.github.io/Mysite/" id="share-link-input">
+            </div>
+            
+            <div class="share-success-message" id="share-success-message">
+                <i data-lucide="check-circle"></i>
+                <span>Ссылка скопирована!</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- JSON-LD Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Данил Иванов",
+        "url": "https://danilmashina.github.io/Mysite/",
+        "image": "https://danilmashina.github.io/Mysite/assets/my-avatar.jpg",
+        "sameAs": [
+            "https://github.com/danilmashina",
+            "https://www.linkedin.com/in/danil-ivanov-022085241/",
+            "https://t.me/Danilmashina"
+        ],
+        "jobTitle": "QA Engineer & Веб-разработчик",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Аэрофлот"
+        },
+        "alumniOf": {
+            "@type": "Organization",
+            "name": "Университет"
+        },
+        "knowsAbout": [
+            "QA Testing",
+            "Web Development",
+            "Mobile Testing",
+            "React Native",
+            "TypeScript",
+            "JavaScript",
+            "Python",
+            "Selenium",
+            "REST API"
+        ],
+        "description": "Профессиональный QA Engineer с 5+ годами опыта тестирования Web и Mobile. Веб-разработчик с фокусом на современные интерактивные приложения."
+    }
+    </script>
+
+    <!-- Web Audio & Logic Scripts -->
+    <script src="app.js"></script>
+</body>
+
+</html>
