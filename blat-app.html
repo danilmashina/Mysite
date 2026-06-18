@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else {
+                const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+                document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+            }
+        })();
+    </script>
+    <title>Blat — Платформа обмена | DANIL.DEV</title>
+    <meta name="description"
+        content="Подробная информация о приложении Blat. Платформа взаимного обмена благами с защитой сделок и внутренней валютой БК (Блат-коины).">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mobile-app-styles.css">
+</head>
+
+<body>
+    <!-- Ambient Background Elements -->
+    <div class="ambient-bg">
+        <div class="blob blob-1" id="blob-1"></div>
+        <div class="blob blob-2" id="blob-2"></div>
+        <div class="blob blob-3" id="blob-3"></div>
+        <div class="cursor-glow" id="cursor-glow"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="main-header scrolled" id="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo" id="header-logo">
+                <span class="logo-dot"></span> Portfolio
+            </a>
+            <div class="header-controls">
+                <nav class="back-nav">
+                    <a href="index.html" class="nav-link nav-btn"><i data-lucide="arrow-left" class="nav-btn-icon"></i>
+                        На главную</a>
+                </nav>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Переключить тему" title="Переключить тему">
+                    <i data-lucide="sun" class="theme-icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-content">
+        <div class="app-bento-grid">
+
+            <!-- 1. APP HEADER CARD (col-span-2) -->
+            <section class="bento-card app-hero-card col-span-2" id="app-hero-card">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content">
+                    <div class="app-header-layout">
+                        <div class="app-icon-wrapper">
+                            <img src="assets/log.png" alt="Blat App Icon" class="app-page-icon">
+                        </div>
+                        <div class="app-header-details">
+                            <div class="badge-row">
+                                <span class="pulse-badge status-in-dev">
+                                    <span class="pulse-dot"></span> В разработке
+                                </span>
+                            </div>
+                            <h1 class="app-page-title">Blat</h1>
+                            <p class="app-page-subtitle">Платформа взаимного обмена благами с защитой сделок</p>
+
+                            <div class="app-platforms">
+                                <span class="platform-badge"><i data-lucide="smartphone"></i> Android OS</span>
+                                <span class="platform-badge"><i data-lucide="smartphone"></i> iOS</span>
+                            </div>
+
+                            <div class="app-action-buttons">
+                                <button class="btn btn-secondary app-btn" disabled>
+                                    <i data-lucide="clock"></i> Скоро в App Store
+                                </button>
+                                <button class="action-icon-btn btn-share" title="Поделиться">
+                                    <i data-lucide="share-2"></i>
+                                </button>
+                                <button class="action-icon-btn btn-wishlist" title="В избранное">
+                                    <i data-lucide="heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. SCREENSHOTS GALLERY (col-span-3) -->
+            <section class="bento-card description-card col-span-3" id="screenshots-card">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <i data-lucide="smartphone" class="card-icon accent-blue"></i>
+                        <h2>Скриншоты приложения</h2>
+                    </div>
+                    <div class="screenshots-grid">
+                        <div class="screenshot-item">
+                            <img src="assets/blat.jpg" alt="Blat Screenshot 1" class="screenshot-img" loading="lazy">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="assets/blat1.jpg" alt="Blat Screenshot 2" class="screenshot-img" loading="lazy">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="assets/blat2.jpg" alt="Blat Screenshot 3" class="screenshot-img" loading="lazy">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="assets/blat3.jpg" alt="Blat Screenshot 4" class="screenshot-img" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. DESCRIPTION CARD (col-span-2) -->
+            <section class="bento-card description-card col-span-2" id="description-card">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <i data-lucide="file-text" class="card-icon accent-indigo"></i>
+                        <h2>Описание проекта</h2>
+                    </div>
+                    <div class="description-body">
+                        <p class="description-p">
+                            <strong>Blat</strong> — это революционная платформа, где люди обмениваются тем, что у них есть лишнего: билеты на концерты, подписки на сервисы, услуги, вещи и даже связи.
+                        </p>
+                        <p class="description-p">
+                            Используя внутреннюю валюту <strong>БК (Блат-коины)</strong>, система гарантирует справедливый и безопасный обмен без прямых денежных транзакций. Каждая сделка защищена эскроу-механикой.
+                        </p>
+                        <h3 class="features-title">Ключевой функционал:</h3>
+                        <ul class="features-list">
+                            <li><span class="emoji-bullet">💰</span> <strong>Система внутренней валюты БК</strong> с эскроу-механикой для безопасного обмена.</li>
+                            <li><span class="emoji-bullet">🔒</span> <strong>Защищённые сделки</strong> с автоподтверждением и страховкой.</li>
+                            <li><span class="emoji-bullet">💬</span> <strong>Realtime чат</strong> между пользователями для согласования условий.</li>
+                            <li><span class="emoji-bullet">🔐</span> <strong>Множественная авторизация:</strong> Email, Google OAuth, Apple Sign In.</li>
+                            <li><span class="emoji-bullet">🎠</span> <strong>Фильтрация и поиск</strong> по категориям с удобным интерфейсом.</li>
+                            <li><span class="emoji-bullet">🔔</span> <strong>Push-уведомления</strong> о новых сделках, сообщениях и обновлениях статуса.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. IDEA CARD -->
+            <section class="bento-card app-stats-card" id="app-stats-card">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content flex-column-between">
+                    <div class="card-header">
+                        <i data-lucide="lightbulb" class="card-icon accent-purple"></i>
+                        <h2>Идея проекта</h2>
+                    </div>
+                    <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">
+                        Blat — это революционная платформа, где люди обмениваются тем, что у них есть лишнего: билеты на концерты, подписки на сервисы, услуги, вещи и даже связи. Используя внутреннюю валюту <strong>БК (Блат-коины)</strong>, система гарантирует справедливый и безопасный обмен без прямых денежных транзакций.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 5. DEV & QA CORNER CARD -->
+            <section class="bento-card dev-qa-card" id="dev-qa-card">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content flex-column-between">
+                    <div>
+                        <div class="card-header">
+                            <i data-lucide="terminal" class="card-icon accent-emerald"></i>
+                            <h2>Разработка и QA</h2>
+                        </div>
+                        <p class="dev-qa-desc">Ключевой технический вклад в проект:</p>
+                        <div class="tech-tags-list">
+                            <span class="tech-tag-badge">React Native</span>
+                            <span class="tech-tag-badge">TypeScript</span>
+                            <span class="tech-tag-badge">FastAPI</span>
+                            <span class="tech-tag-badge">PostgreSQL</span>
+                            <span class="tech-tag-badge">Supabase</span>
+                            <span class="tech-tag-badge">Manual QA</span>
+                        </div>
+                    </div>
+                    <div class="dev-qa-footer-info">
+                        <span class="dev-qa-check status-in-dev-inline"><i data-lucide="clock"></i> В разработке</span>
+                        <span class="dev-qa-check status-in-dev-inline"><i data-lucide="loader"></i> MVP готов на 70%</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. DATA PRIVACY & SECURITY CARD (col-span-3) -->
+            <section class="bento-card security-card col-span-3" id="security-card">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <i data-lucide="shield-check" class="card-icon accent-emerald"></i>
+                        <h2>Безопасность и конфиденциальность данных</h2>
+                    </div>
+                    <p class="security-intro-text">
+                        Мы заботимся о вашей безопасности. Приложение использует шифрование данных и защиту сделок через эскроу. Ниже представлена подробная информация об обрабатываемых данных.
+                    </p>
+
+                    <div class="security-grid">
+                        <div class="security-item">
+                            <div class="security-icon-box">
+                                <i data-lucide="user-check"></i>
+                            </div>
+                            <div class="security-item-content">
+                                <h3>Учетные данные</h3>
+                                <p>Email, зашифрованный пароль и OAuth-токены. Используются исключительно для безопасной аутентификации и авторизации.</p>
+                            </div>
+                        </div>
+
+                        <div class="security-item">
+                            <div class="security-icon-box">
+                                <i data-lucide="lock"></i>
+                            </div>
+                            <div class="security-item-content">
+                                <h3>Эскроу-защита сделок</h3>
+                                <p>Блат-коины блокируются до подтверждения обмена обеими сторонами. Гарантируется безопасность и честность каждой сделки.</p>
+                            </div>
+                        </div>
+
+                        <div class="security-item">
+                            <div class="security-icon-box">
+                                <i data-lucide="image"></i>
+                            </div>
+                            <div class="security-item-content">
+                                <h3>Медиафайлы и фото</h3>
+                                <p>Загружаемые пользователями фото товаров, услуг и аватарки. Хранятся в защищённом облаке Supabase Storage.</p>
+                            </div>
+                        </div>
+
+                        <div class="security-item">
+                            <div class="security-icon-box">
+                                <i data-lucide="trash-2"></i>
+                            </div>
+                            <div class="security-item-content">
+                                <h3>Запрос на удаление данных</h3>
+                                <p>Вы имеете полное право запросить удаление своего аккаунта и всех связанных данных в любой момент через настройки профиля.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2023 Portfolio. Все права защищены.</p>
+    </footer>
+
+    <!-- Lucide Icons & GSAP -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Page Interaction Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Initialize lucide icons
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+
+            // Spotlight mouse hover effect on bento cards
+            const cards = document.querySelectorAll(".bento-card");
+            cards.forEach(card => {
+                card.addEventListener("mousemove", e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty("--mouse-x", `${x}px`);
+                    card.style.setProperty("--mouse-y", `${y}px`);
+                });
+            });
+
+            // Smooth parallax background blobs movement on mouse move
+            const blob1 = document.getElementById("blob-1");
+            const blob2 = document.getElementById("blob-2");
+            const blob3 = document.getElementById("blob-3");
+            const cursorGlow = document.getElementById("cursor-glow");
+
+            document.addEventListener("mousemove", e => {
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+
+                cursorGlow.style.opacity = "1";
+                cursorGlow.style.left = `${mouseX}px`;
+                cursorGlow.style.top = `${mouseY}px`;
+
+                const shiftX1 = (mouseX - window.innerWidth / 2) * 0.03;
+                const shiftY1 = (mouseY - window.innerHeight / 2) * 0.03;
+                const shiftX2 = (mouseX - window.innerWidth / 2) * -0.02;
+                const shiftY2 = (mouseY - window.innerHeight / 2) * -0.02;
+                const shiftX3 = (mouseX - window.innerWidth / 2) * 0.01;
+                const shiftY3 = (mouseY - window.innerHeight / 2) * -0.01;
+
+                gsap.to(blob1, { x: shiftX1, y: shiftY1, duration: 2, ease: "power1.out" });
+                gsap.to(blob2, { x: shiftX2, y: shiftY2, duration: 2.5, ease: "power1.out" });
+                gsap.to(blob3, { x: shiftX3, y: shiftY3, duration: 3, ease: "power1.out" });
+            });
+
+            document.addEventListener("mouseleave", () => {
+                cursorGlow.style.opacity = "0";
+            });
+
+            // Entrance animation with GSAP
+            gsap.from(".bento-card", {
+                opacity: 0,
+                y: 40,
+                scale: 0.97,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: "power3.out",
+                clearProps: "all"
+            });
+
+            // Interactive Share & Wishlist button feedback
+            const shareBtn = document.querySelector(".btn-share");
+            const wishlistBtn = document.querySelector(".btn-wishlist");
+
+            shareBtn.addEventListener("click", () => {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Blat',
+                        text: 'Blat — платформа взаимного обмена благами',
+                        url: window.location.href
+                    }).catch(err => console.log(err));
+                } else {
+                    navigator.clipboard.writeText(window.location.href);
+                    const originalHTML = shareBtn.innerHTML;
+                    shareBtn.innerHTML = `<i data-lucide="check"></i>`;
+                    window.lucide.createIcons();
+                    setTimeout(() => {
+                        shareBtn.innerHTML = originalHTML;
+                        window.lucide.createIcons();
+                    }, 2000);
+                }
+            });
+
+            wishlistBtn.addEventListener("click", () => {
+                const icon = wishlistBtn.querySelector("i");
+                if (wishlistBtn.classList.contains("active")) {
+                    wishlistBtn.classList.remove("active");
+                    icon.setAttribute("data-lucide", "heart");
+                    wishlistBtn.style.color = "";
+                } else {
+                    wishlistBtn.classList.add("active");
+                    icon.setAttribute("data-lucide", "heart");
+                    wishlistBtn.style.color = "#ef4444";
+                    gsap.fromTo(wishlistBtn, { scale: 0.8 }, { scale: 1.1, duration: 0.2, yoyo: true, repeat: 1 });
+                }
+                window.lucide.createIcons();
+            });
+
+            // Initialize Theme Switcher
+            initThemeSwitcher();
+        });
+
+        function initThemeSwitcher() {
+            const themeToggle = document.getElementById("theme-toggle");
+            if (!themeToggle) return;
+
+            function updateToggleIcon(theme) {
+                if (theme === "light") {
+                    themeToggle.innerHTML = `<i data-lucide="moon" class="theme-icon"></i>`;
+                } else {
+                    themeToggle.innerHTML = `<i data-lucide="sun" class="theme-icon"></i>`;
+                }
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
+            }
+
+            const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
+            updateToggleIcon(currentTheme);
+
+            themeToggle.addEventListener("click", () => {
+                const activeTheme = document.documentElement.getAttribute("data-theme") || "dark";
+                const newTheme = activeTheme === "dark" ? "light" : "dark";
+
+                document.documentElement.setAttribute("data-theme", newTheme);
+                localStorage.setItem("theme", newTheme);
+                updateToggleIcon(newTheme);
+            });
+        }
+    </script>
+
+    <style>
+        /* Progress Bar Styles for Blat App */
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 24px;
+            margin-top: 20px;
+        }
+
+        .progress-item {
+            padding: 16px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+        }
+
+        .progress-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--border-hover);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .progress-header h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .progress-percent {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            border-radius: 3px;
+            transition: width 0.6s ease;
+        }
+
+        .progress-note {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin: 0;
+        }
+
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.85em;
+            color: var(--color-primary);
+        }
+
+        .status-in-dev {
+            background: rgba(249, 115, 22, 0.08) !important;
+            border-color: rgba(249, 115, 22, 0.2) !important;
+            color: #f97316 !important;
+        }
+
+        .status-in-dev .pulse-dot {
+            background-color: #f97316 !important;
+        }
+
+        .status-in-dev-inline {
+            color: #f97316 !important;
+        }
+
+        .status-in-dev-inline i {
+            color: #f97316 !important;
+        }
+
+        /* Screenshots Gallery */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-gap: 16px;
+            margin-top: 20px;
+        }
+
+        .screenshot-item {
+            position: relative;
+            aspect-ratio: 9 / 16;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.2);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .screenshot-item:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: var(--border-hover);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .screenshot-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .screenshot-item:hover .screenshot-img {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .screenshots-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</body>
+
+</html>
