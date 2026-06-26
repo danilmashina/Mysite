@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else {
+                const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+                document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+            }
+        })();
+    </script>
+    <title>Touch Recorder | DANIL.DEV</title>
+    <meta name="description"
+        content="Подробная информация о приложении Touch Recorder. iOS-приложение для записи и воспроизведения касаний и жестов, опубликованное в Apple App Store.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mobile-app-styles.css">
+</head>
+
+<body>
+    <!-- Ambient Background Elements -->
+    <div class="ambient-bg">
+        <div class="blob blob-1" id="blob-1"></div>
+        <div class="blob blob-2" id="blob-2"></div>
+        <div class="blob blob-3" id="blob-3"></div>
+        <div class="cursor-glow" id="cursor-glow"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="main-header scrolled" id="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo" id="header-logo">
+                <span class="logo-dot"></span> Portfolio
+            </a>
+            <div class="header-controls">
+                <nav class="back-nav">
+                    <a href="index.html" class="nav-link nav-btn"><i data-lucide="arrow-left" class="nav-btn-icon"></i>
+                        На главную</a>
+                </nav>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Переключить тему" title="Переключить тему">
+                    <i data-lucide="sun" class="theme-icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-content">
+        <div class="app-bento-grid">
+
+            <!-- 1. APP HEADER CARD (full width) -->
+            <section class="bento-card app-hero-card col-span-3" id="app-hero-card">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content">
+                    <div class="app-header-layout">
+                        <div class="app-icon-wrapper">
+                            <img src="img/Logo.png" alt="Touch Recorder App Icon" class="app-page-icon">
+                        </div>
+                        <div class="app-header-details">
+                            <div class="badge-row">
+                                <span class="pulse-badge">Доступно в App Store</span>
+                            </div>
+                            <h1 class="app-page-title">Touch Recorder</h1>
+                            <p class="app-page-subtitle">iOS-приложение для записи и воспроизведения касаний</p>
+
+                            <div class="app-platforms">
+                                <span class="platform-badge"><i data-lucide="smartphone"></i> iOS</span>
+                            </div>
+
+                            <div class="app-action-buttons">
+                                <a href="https://apps.apple.com/us/app/touch-recorder/id6783915351" target="_blank" rel="noopener noreferrer" class="btn btn-primary app-btn">
+                                    <i data-lucide="download"></i> Скачать App Store
+                                </a>
+                                <button class="action-icon-btn btn-wishlist" title="В избранное" aria-pressed="false">
+                                    <i data-lucide="heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. SCREENSHOTS GALLERY (col-span-3) -->
+            <section class="bento-card description-card col-span-3" id="screenshots-card">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <i data-lucide="smartphone" class="card-icon accent-blue"></i>
+                        <h2>Скриншоты приложения</h2>
+                    </div>
+                    <div class="screenshots-grid">
+                        <div class="screenshot-item">
+                            <img src="assets/touch-recorder.png" alt="Touch Recorder Screenshot 1" class="screenshot-img" loading="lazy">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="assets/touch-recorder1.png" alt="Touch Recorder Screenshot 2" class="screenshot-img" loading="lazy">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="assets/touch-recorder2.png" alt="Touch Recorder Screenshot 3" class="screenshot-img" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. DESCRIPTION CARD (col-span-2) -->
+            <section class="bento-card description-card col-span-2" id="description-card">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <i data-lucide="file-text" class="card-icon accent-indigo"></i>
+                        <h2>Описание проекта</h2>
+                    </div>
+                    <div class="description-body">
+                        <p class="description-p">
+                            <strong>Touch Recorder</strong> — iOS-приложение для записи и воспроизведения касаний и
+                            жестов. Проект полностью спроектирован, разработан, протестирован и опубликован в Apple App
+                            Store.
+                        </p>
+                        <p class="description-p">
+                            Приложение позволяет фиксировать последовательности касаний и точно воспроизводить их,
+                            автоматизируя повторяющиеся действия на экране.
+                        </p>
+                        <h3 class="features-title">Ключевой функционал:</h3>
+                        <ul class="features-list">
+                            <li><span class="emoji-bullet">📲</span> <strong>Публикация в Apple App Store</strong> — приложение прошло модерацию и доступно пользователям.</li>
+                            <li><span class="emoji-bullet">🎬</span> <strong>Запись и воспроизведение касаний</strong> для автоматизации действий на экране.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. DEV & QA CORNER CARD -->
+            <section class="bento-card dev-qa-card" id="dev-qa-card">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content flex-column-between">
+                    <div>
+                        <div class="card-header">
+                            <i data-lucide="terminal" class="card-icon accent-emerald"></i>
+                            <h2>Разработка и QA</h2>
+                        </div>
+                        <p class="dev-qa-desc">Ключевой технический вклад в проект:</p>
+                        <div class="tech-tags-list">
+                            <span class="tech-tag-badge">Swift</span>
+                            <span class="tech-tag-badge">Xcode</span>
+                            <span class="tech-tag-badge">App Store</span>
+                            <span class="tech-tag-badge">Manual QA</span>
+                        </div>
+                    </div>
+                    <div class="dev-qa-footer-info">
+                        <span class="dev-qa-check"><i data-lucide="check-circle-2"></i> Проект опубликован</span>
+                        <span class="dev-qa-check"><i data-lucide="check-circle-2"></i> Пройдена модерация</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2023 Portfolio. Все права защищены.</p>
+    </footer>
+
+    <!-- Lucide Icons & GSAP -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Page Interaction Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Initialize lucide icons
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+
+            // Spotlight mouse hover effect on bento cards
+            const cards = document.querySelectorAll(".bento-card");
+            cards.forEach(card => {
+                card.addEventListener("mousemove", e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty("--mouse-x", `${x}px`);
+                    card.style.setProperty("--mouse-y", `${y}px`);
+                });
+            });
+
+            // Smooth parallax background blobs movement on mouse move
+            const blob1 = document.getElementById("blob-1");
+            const blob2 = document.getElementById("blob-2");
+            const blob3 = document.getElementById("blob-3");
+            const cursorGlow = document.getElementById("cursor-glow");
+
+            document.addEventListener("mousemove", e => {
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+
+                cursorGlow.style.opacity = "1";
+                cursorGlow.style.left = `${mouseX}px`;
+                cursorGlow.style.top = `${mouseY}px`;
+
+                const shiftX1 = (mouseX - window.innerWidth / 2) * 0.03;
+                const shiftY1 = (mouseY - window.innerHeight / 2) * 0.03;
+                const shiftX2 = (mouseX - window.innerWidth / 2) * -0.02;
+                const shiftY2 = (mouseY - window.innerHeight / 2) * -0.02;
+                const shiftX3 = (mouseX - window.innerWidth / 2) * 0.01;
+                const shiftY3 = (mouseY - window.innerHeight / 2) * -0.01;
+
+                gsap.to(blob1, { x: shiftX1, y: shiftY1, duration: 2, ease: "power1.out" });
+                gsap.to(blob2, { x: shiftX2, y: shiftY2, duration: 2.5, ease: "power1.out" });
+                gsap.to(blob3, { x: shiftX3, y: shiftY3, duration: 3, ease: "power1.out" });
+            });
+
+            document.addEventListener("mouseleave", () => {
+                cursorGlow.style.opacity = "0";
+            });
+
+            // Entrance animation with GSAP
+            gsap.from(".bento-card", {
+                opacity: 0,
+                y: 40,
+                scale: 0.97,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: "power3.out",
+                clearProps: "all"
+            });
+
+            // Interactive Share & Wishlist button feedback
+            const shareBtn = document.querySelector(".btn-share");
+            const wishlistBtn = document.querySelector(".btn-wishlist");
+
+            if (shareBtn) {
+                shareBtn.addEventListener("click", () => {
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'Touch Recorder',
+                            text: 'Touch Recorder — iOS-приложение для записи касаний',
+                            url: window.location.href
+                        }).catch(err => console.log(err));
+                    } else {
+                        navigator.clipboard.writeText(window.location.href);
+                        const originalHTML = shareBtn.innerHTML;
+                        shareBtn.innerHTML = `<i data-lucide=\"check\"></i>`;
+                        window.lucide.createIcons();
+                        setTimeout(() => {
+                            shareBtn.innerHTML = originalHTML;
+                            window.lucide.createIcons();
+                        }, 2000);
+                    }
+                });
+            }
+
+            if (wishlistBtn) {
+                wishlistBtn.addEventListener("click", () => {
+                    const icon = wishlistBtn.querySelector("i");
+                    const pressed = wishlistBtn.classList.contains("active");
+                    wishlistBtn.setAttribute('aria-pressed', String(!pressed));
+                    if (pressed) {
+                        wishlistBtn.classList.remove("active");
+                        if (icon) icon.setAttribute("data-lucide", "heart");
+                        wishlistBtn.style.color = "";
+                    } else {
+                        wishlistBtn.classList.add("active");
+                        if (icon) icon.setAttribute("data-lucide", "heart");
+                        wishlistBtn.style.color = "#ef4444";
+                        gsap.fromTo(wishlistBtn, { scale: 0.8 }, { scale: 1.1, duration: 0.2, yoyo: true, repeat: 1 });
+                    }
+                    window.lucide.createIcons();
+                });
+            }
+
+            // Initialize Theme Switcher
+            initThemeSwitcher();
+        });
+
+        function initThemeSwitcher() {
+            const themeToggle = document.getElementById("theme-toggle");
+            if (!themeToggle) return;
+
+            function updateToggleIcon(theme) {
+                if (theme === "light") {
+                    themeToggle.innerHTML = `<i data-lucide="moon" class="theme-icon"></i>`;
+                } else {
+                    themeToggle.innerHTML = `<i data-lucide="sun" class="theme-icon"></i>`;
+                }
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
+            }
+
+            const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
+            updateToggleIcon(currentTheme);
+
+            themeToggle.addEventListener("click", () => {
+                const activeTheme = document.documentElement.getAttribute("data-theme") || "dark";
+                const newTheme = activeTheme === "dark" ? "light" : "dark";
+
+                document.documentElement.setAttribute("data-theme", newTheme);
+                localStorage.setItem("theme", newTheme);
+                updateToggleIcon(newTheme);
+            });
+        }
+    </script>
+
+    <style>
+        /* Screenshots Gallery */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-gap: 16px;
+            margin-top: 20px;
+        }
+
+        .screenshot-item {
+            position: relative;
+            aspect-ratio: 1242 / 2688;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.2);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .screenshot-item:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: var(--border-hover);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .screenshot-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .screenshot-item:hover .screenshot-img {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .screenshots-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://danilmashina.github.io/Mysite/sitemap.xml
+
+# Disallow paths
+Disallow: /assets/
+Disallow: /*.css$
+Disallow: /*.js$

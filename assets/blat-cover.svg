@@ -1,0 +1,27 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Фон: тёплый бежевый -->
+  <defs>
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#F5F0E8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E8DCC8;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <rect width="400" height="400" fill="url(#bgGradient)"/>
+  
+  <!-- Большой зелёный круг -->
+  <circle cx="200" cy="200" r="160" fill="#2D6A4F" opacity="0.95"/>
+  
+  <!-- Стилизованная буква 'B' (Blat) -->
+  <text x="200" y="250" font-family="Manrope, Arial, sans-serif" font-size="140" font-weight="900" fill="#F5F0E8" text-anchor="middle">
+    B
+  </text>
+  
+  <!-- Символ обмена: две стрелки -->
+  <g stroke="#FFD166" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+    <!-- Стрелка вверх-вправо -->
+    <path d="M 270 140 L 320 90 L 320 140"/>
+    <!-- Стрелка вниз-влево -->
+    <path d="M 130 260 L 80 310 L 80 260"/>
+  </g>
+</svg>
