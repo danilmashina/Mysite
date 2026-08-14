@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function () {
+            const theme = localStorage.getItem('theme');
+            document.documentElement.setAttribute('data-theme', theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+        })();
+    </script>
+    <title>EdgeSwipe | DANIL.DEV</title>
+    <meta name="description" content="EdgeSwipe — macOS-приложение для управления яркостью, громкостью и музыкой жестами на встроенном трекпаде MacBook.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mobile-app-styles.css">
+</head>
+<body>
+    <div class="ambient-bg">
+        <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="cursor-glow" id="cursor-glow"></div>
+    </div>
+    <header class="main-header scrolled" id="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo"><span class="logo-dot"></span> Portfolio</a>
+            <div class="header-controls">
+                <nav class="back-nav"><a href="index.html" class="nav-link nav-btn"><i data-lucide="arrow-left" class="nav-btn-icon"></i> На главную</a></nav>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Переключить тему"><i data-lucide="sun" class="theme-icon"></i></button>
+            </div>
+        </div>
+    </header>
+    <main class="main-content">
+        <div class="app-bento-grid">
+            <section class="bento-card app-hero-card col-span-3">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content"><div class="app-header-layout">
+                    <div class="app-icon-wrapper"><img src="assets/edgeswipe-icon.png" alt="Иконка EdgeSwipe" class="app-page-icon"></div>
+                    <div class="app-header-details">
+                        <div class="badge-row"><span class="pulse-badge"><span class="pulse-dot"></span> Доступно на GitHub</span></div>
+                        <h1 class="app-page-title">EdgeSwipe</h1>
+                        <p class="app-page-subtitle">Управление яркостью, громкостью и музыкой одним пальцем по краям встроенного трекпада MacBook.</p>
+                        <div class="app-platforms"><span class="platform-badge"><i data-lucide="laptop"></i> macOS 13+</span><span class="platform-badge"><i data-lucide="mouse-pointer-2"></i> Встроенный трекпад MacBook</span></div>
+                        <div class="app-action-buttons"><a href="https://github.com/danilmashina/EdgeSwipe/releases" target="_blank" rel="noopener noreferrer" class="btn btn-primary app-btn"><i data-lucide="download"></i> Скачать с GitHub</a><a href="https://github.com/danilmashina/EdgeSwipe" target="_blank" rel="noopener noreferrer" class="btn btn-secondary app-btn"><i data-lucide="github"></i> Открыть репозиторий</a></div>
+                    </div>
+                </div></div>
+            </section>
+            <section class="bento-card screenshots-card col-span-3">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content"><div class="card-header"><i data-lucide="image" class="card-icon accent-blue"></i><h2>Интерфейс приложения</h2></div>
+                    <div class="screenshots-slider-container"><div class="screenshots-slider edgeswipe-screenshots">
+                        <div class="slider-item"><img src="assets/edgeswipe-preview.png" alt="EdgeSwipe: интерфейс приложения" class="slider-img" loading="lazy"></div>
+                        <div class="slider-item"><img src="assets/edgeswipe-menu.png" alt="EdgeSwipe: меню в строке macOS" class="slider-img" loading="lazy"></div>
+                        <div class="slider-item"><img src="assets/edgeswipe-zones.png" alt="EdgeSwipe: выбор зоны трекпада" class="slider-img" loading="lazy"></div>
+                    </div></div>
+                </div>
+            </section>
+            <section class="bento-card description-card col-span-2">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content"><div class="card-header"><i data-lucide="file-text" class="card-icon accent-indigo"></i><h2>Описание проекта</h2></div>
+                    <div class="description-body">
+                        <p class="description-p"><strong>EdgeSwipe</strong> — лёгкое приложение для macOS, которое превращает края встроенного трекпада MacBook в удобные элементы управления.</p>
+                        <p class="description-p">Свайпы по левому и правому краям меняют яркость и системную громкость, а жесты по нижнему краю управляют музыкой. Приложение работает в фоне и настраивается из строки меню macOS.</p>
+                        <h3 class="features-title">Ключевой функционал:</h3>
+                        <ul class="features-list">
+                            <li><span class="emoji-bullet">☀️</span> <strong>Левый край:</strong> управление яркостью встроенного дисплея.</li>
+                            <li><span class="emoji-bullet">🔊</span> <strong>Правый край:</strong> управление системной громкостью.</li>
+                            <li><span class="emoji-bullet">🎵</span> <strong>Нижний край:</strong> переключение треков, а касание тремя пальцами — пауза или продолжение воспроизведения.</li>
+                            <li><span class="emoji-bullet">🎯</span> <strong>Настраиваемые зоны:</strong> весь край, верхняя или нижняя половина трекпада.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="bento-card dev-qa-card">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content flex-column-between"><div>
+                    <div class="card-header"><i data-lucide="terminal" class="card-icon accent-emerald"></i><h2>Разработка</h2></div>
+                    <p class="dev-qa-desc">Технологии и требования проекта:</p>
+                    <div class="tech-tags-list"><span class="tech-tag-badge">Swift</span><span class="tech-tag-badge">macOS</span><span class="tech-tag-badge">AppKit</span><span class="tech-tag-badge">Accessibility</span><span class="tech-tag-badge">Input Monitoring</span></div>
+                </div><div class="dev-qa-footer-info"><span class="dev-qa-check"><i data-lucide="check-circle-2"></i> Без сторонних зависимостей</span><span class="dev-qa-check"><i data-lucide="check-circle-2"></i> Исходный код на GitHub</span></div></div>
+            </section>
+            <section class="bento-card security-card col-span-3">
+                <div class="card-glow-overlay"></div>
+                <div class="card-content"><div class="card-header"><i data-lucide="circle-check" class="card-icon accent-emerald"></i><h2>Установка</h2></div>
+                    <p class="security-intro-text">Для работы нужен MacBook с macOS 13 Ventura или новее. Скачайте <strong>EdgeSwipe.dmg</strong> из Releases, перенесите приложение в «Программы» и предоставьте разрешения «Универсальный доступ» и «Мониторинг ввода».</p>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="main-footer"><p>&copy; 2023 Portfolio. Все права защищены.</p></footer>
+    <style>
+        .edgeswipe-screenshots { align-items: stretch; }
+        .edgeswipe-screenshots .slider-item {
+            width: min(30vw, 320px);
+            min-width: 200px;
+            aspect-ratio: 16 / 10;
+            background: #16161a;
+        }
+        .edgeswipe-screenshots .slider-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: inherit;
+        }
+        html[data-theme="light"] .edgeswipe-screenshots .slider-item {
+            background: #16161a;
+        }
+    </style>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            const toggle = document.getElementById('theme-toggle');
+            const updateIcon = () => { toggle.innerHTML = `<i data-lucide="${document.documentElement.dataset.theme === 'light' ? 'moon' : 'sun'}" class="theme-icon"></i>`; lucide.createIcons(); };
+            updateIcon();
+            toggle.addEventListener('click', () => { document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; localStorage.setItem('theme', document.documentElement.dataset.theme); updateIcon(); });
+        });
+    </script>
+</body>
+</html>
