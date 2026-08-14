@@ -190,6 +190,52 @@ const projectsData = {
             "Публикация в Apple App Store",
             "Запись и воспроизведение касаний"
         ]
+    },
+    9: {
+        title: "EdgeSwipe",
+        category: "mobile",
+        skills: ["Swift", "macOS", "Xcode", "Accessibility"],
+        desc: "Лёгкое приложение для MacBook: управление яркостью, громкостью и музыкой жестами по краям встроенного трекпада.",
+        tech: "Swift, macOS, AppKit, Accessibility API",
+        role: "macOS Developer",
+        img: "assets/edgeswipe-preview.png",
+        demo: "edgeswipe-app.html",
+        subtitle: "Управление MacBook жестами на трекпаде",
+        badge: "macOS",
+        icon: "laptop",
+        techBlocks: [
+            { icon: "code-2", name: "Swift" },
+            { icon: "laptop", name: "macOS" },
+            { icon: "mouse-pointer-2", name: "Trackpad" }
+        ],
+        features: [
+            "Управление яркостью и громкостью по краям трекпада",
+            "Переключение треков и пауза жестами",
+            "Выбор активных зон в строке меню macOS"
+        ]
+    },
+    10: {
+        title: "Daniela — личный AI-ассистент",
+        category: "motion",
+        skills: ["Telegram", "VPS", "Python", "Automation"],
+        desc: "Личный AI-ассистент в Telegram, развернутый на собственном VPS. Помогает организовывать повседневные задачи и работает как автономный сервис.",
+        tech: "Telegram, VPS, Python, Automation",
+        role: "Creator & Maintainer",
+        img: "assets/daniela-assistant.png",
+        demo: null,
+        subtitle: "Личный ассистент для задач и напоминаний",
+        badge: "Private",
+        icon: "bot",
+        techBlocks: [
+            { icon: "send", name: "Telegram" },
+            { icon: "server", name: "VPS" },
+            { icon: "bell-ring", name: "Напоминания" }
+        ],
+        features: [
+            "Персональные напоминания о регулярных задачах",
+            "Диалоговый помощник в Telegram",
+            "Автономная работа и контроль состояния сервиса"
+        ]
     }
 };
 
@@ -294,8 +340,12 @@ let audioPlayers = {
 let audioCtx = null;
 
 function initAudioPlayers() {
-    audioPlayers.fly = new Audio('assets/fly.mp3');
-    audioPlayers.xxx = new Audio('assets/xxx-intro.mp3');
+    audioPlayers.fly = new Audio();
+    audioPlayers.fly.preload = "none";
+    audioPlayers.fly.src = "assets/fly.mp3";
+    audioPlayers.xxx = new Audio();
+    audioPlayers.xxx.preload = "none";
+    audioPlayers.xxx.src = "assets/xxx-intro.mp3";
     
     audioPlayers.fly.loop = true;
     audioPlayers.xxx.loop = true;
@@ -348,14 +398,7 @@ function initGSAP() {
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
 
-    // 1. Initial page load animation: Header + Hero Card (only)
-    gsap.from("#main-header", {
-        opacity: 0,
-        y: -30,
-        duration: 1,
-        ease: "power3.out"
-    });
-
+    // 1. Initial page load animation: Hero Card (only)
     gsap.from("#hero-card", {
         opacity: 0,
         y: 40,
@@ -864,8 +907,6 @@ function initContactForm() {
                 message: messageInput.value.trim()
             };
             
-            console.log('Отправка формы...', formData);
-            
             // Send via Formspree
             fetch('https://formspree.io/f/mzdqqjzq', {
                 method: 'POST',
@@ -876,12 +917,9 @@ function initContactForm() {
                 body: JSON.stringify(formData)
             })
             .then(response => {
-                console.log('Ответ сервера:', response.status, response.statusText);
                 return response.json().then(data => ({ status: response.status, data }));
             })
             .then(({ status, data }) => {
-                console.log('Данные ответа:', data);
-                
                 if (status === 200 || status === 201) {
                     playNotificationBeep();
                     
@@ -993,7 +1031,9 @@ function initProjectModal() {
         
         mTitle.textContent = proj.title;
         mDesc.textContent = proj.desc;
-        mDemo.href = proj.demo;
+        const modalActions = modal.querySelector(".modal-actions");
+        if (modalActions) modalActions.hidden = !proj.demo;
+        if (proj.demo) mDemo.href = proj.demo;
         
         // Populate subtitle, badge, and icon
         const mSubtitle = document.getElementById("modal-subtitle");
@@ -1255,6 +1295,12 @@ function initTerminalModal() {
         output.appendChild(line);
         output.scrollTop = output.scrollHeight;
     }
+
+    function escapeHtml(text) {
+        const element = document.createElement("div");
+        element.textContent = text;
+        return element.innerHTML;
+    }
     
     function openModal() {
         modal.classList.add("active");
@@ -1296,7 +1342,7 @@ function initTerminalModal() {
             if (cmd === "") return;
             
             // Print user prompt
-            printLine(`<span class="terminal-prompt">danil-qa-test:~$</span> ${cmd}`);
+            printLine(`<span class="terminal-prompt">danil-qa-test:~$</span> ${escapeHtml(cmd)}`);
             
             handleCommand(cmd.toLowerCase());
         }
@@ -1354,7 +1400,7 @@ function initTerminalModal() {
                 runQASuite();
                 break;
             default:
-                printLine(`Команда не найдена: "${cmd}". Введите <span class='highlight-cmd'>help</span> для списка команд.`, "error-msg");
+                printLine(`Команда не найдена: "${escapeHtml(cmd)}". Введите <span class='highlight-cmd'>help</span> для списка команд.`, "error-msg");
         }
     }
     
