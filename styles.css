@@ -675,7 +675,6 @@ button, input, textarea {
 
 .btn-primary:hover {
     box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
-    transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -1507,7 +1506,8 @@ button, input, textarea {
 #project-modal .modal-body {
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Prevent scrolling inside the card completely */
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #project-modal .modal-image-container {
@@ -1686,7 +1686,6 @@ html[data-theme="light"] #project-modal .modal-image-container img {
 .btn-full-width:hover {
     background: var(--color-accent);
     box-shadow: 0 6px 14px rgba(14, 165, 233, 0.3);
-    transform: translateY(-1px);
 }
 
 .btn-full-width svg {

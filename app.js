@@ -59,7 +59,7 @@ const projectsData = {
         tech: "Python, Telegram Bot API, JSON, SQLite",
         role: "Backend Python Developer",
         img: "assets/amigurumi.png",
-        demo: "https://t.me/YourAmigurumiBot",
+        demo: null,
         subtitle: "Telegram-бот для вязания амигуруми",
         badge: "Bot",
         icon: "send",
@@ -131,9 +131,9 @@ const projectsData = {
         demo: "https://github.com/danilmashina/extension-Google-chrome",
         subtitle: "Расширение для создания атмосферы",
         badge: "Ext",
-        icon: "chrome",
+        icon: "globe",
         techBlocks: [
-            { icon: "chrome", name: "Chrome API" },
+            { icon: "globe", name: "Chrome API" },
             { icon: "code-2", name: "JavaScript" },
             { icon: "file-code", name: "JSON Config" }
         ],
@@ -154,7 +154,7 @@ const projectsData = {
         demo: "blat-app.html",
         subtitle: "Платформа обмена благами с защитой сделок",
         badge: "App",
-        icon: "swap-2",
+        icon: "refresh-cw",
         status: "В разработке",
         techBlocks: [
             { icon: "smartphone", name: "React Native" },
@@ -523,9 +523,9 @@ function initParallaxBlobs() {
         const shiftX3 = (mouseX - window.innerWidth / 2) * 0.01;
         const shiftY3 = (mouseY - window.innerHeight / 2) * -0.01;
         
-        gsap.to(blob1, { x: shiftX1, y: shiftY1, duration: 2, ease: "power1.out" });
-        gsap.to(blob2, { x: shiftX2, y: shiftY2, duration: 2.5, ease: "power1.out" });
-        gsap.to(blob3, { x: shiftX3, y: shiftY3, duration: 3, ease: "power1.out" });
+        gsap.to(blob1, { x: shiftX1, y: shiftY1, duration: 2, ease: "power1.out", overwrite: "auto" });
+        gsap.to(blob2, { x: shiftX2, y: shiftY2, duration: 2.5, ease: "power1.out", overwrite: "auto" });
+        gsap.to(blob3, { x: shiftX3, y: shiftY3, duration: 3, ease: "power1.out", overwrite: "auto" });
     });
     
     document.addEventListener("mouseleave", () => {
@@ -1061,13 +1061,16 @@ function initProjectModal() {
         // Populate subtitle, badge, and icon
         const mSubtitle = document.getElementById("modal-subtitle");
         const mBadge = document.getElementById("modal-proj-badge");
-        const mIcon = document.getElementById("modal-proj-icon");
         const mBtnText = document.getElementById("modal-btn-text");
         
         if (mSubtitle) mSubtitle.textContent = proj.subtitle;
         if (mBadge) mBadge.textContent = proj.badge;
+        const mIcon = document.getElementById("modal-proj-icon");
         if (mIcon && window.lucide) {
-            mIcon.setAttribute("data-lucide", proj.icon);
+            const nextIcon = document.createElement("i");
+            nextIcon.id = mIcon.id;
+            nextIcon.setAttribute("data-lucide", proj.icon);
+            mIcon.replaceWith(nextIcon);
         }
         
         // Customize button text depending on project type
@@ -1119,6 +1122,7 @@ function initProjectModal() {
             window.lucide.createIcons();
         }
         
+        modal.querySelector(".modal-body").scrollTop = 0;
         modal.classList.add("active");
         modal.setAttribute("aria-hidden", "false");
         document.addEventListener("keydown", escKeyHandler);
