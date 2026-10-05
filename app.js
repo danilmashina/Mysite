@@ -236,6 +236,29 @@ const projectsData = {
             "Диалоговый помощник в Telegram",
             "Автономная работа и контроль состояния сервиса"
         ]
+    },
+    11: {
+        title: "MyVault — хранилище доступов",
+        category: "web",
+        skills: ["Supabase", "Firebase", "JavaScript"],
+        desc: "Личное пространство для рабочих доступов: проекты, пароли, API-ключи, Bash-команды и заметки. Содержимое хранилища шифруется в браузере; интерфейс доступен на компьютере и телефоне.",
+        tech: "Supabase Auth, AES-256-GCM, PBKDF2, Firebase Hosting",
+        role: "Web Developer / QA",
+        img: "assets/myvault-login.png",
+        demo: "myvault-app.html",
+        subtitle: "Личное пространство для рабочих доступов",
+        badge: "Web App",
+        icon: "key-round",
+        techBlocks: [
+            { icon: "shield-check", name: "Шифрование" },
+            { icon: "database", name: "Supabase" },
+            { icon: "cloud", name: "Firebase" }
+        ],
+        features: [
+            "Разделение записей по проектам и поиск по типу",
+            "Генератор паролей и напоминания",
+            "Шифрование хранилища мастер-паролем в браузере"
+        ]
     }
 };
 

@@ -905,6 +905,16 @@ button, input, textarea {
     background: #fff;
 }
 
+.project-item[data-id="11"] .project-img-wrapper {
+    aspect-ratio: 1;
+    background: #17362b;
+}
+
+.project-item[data-id="11"] .project-img {
+    object-fit: cover;
+    object-position: 64% center;
+}
+
 .project-item:hover .project-img {
     transform: scale(1.06);
 }
